@@ -1,12 +1,12 @@
-from __future__ import absolute_import
 import torch
-import numpy as np
-from ._ext import nms
-import pdb
+import torchvision.ops as ops
 
 def nms_gpu(dets, thresh):
-	keep = dets.new(dets.size(0), 1).zero_().int()
-	num_out = dets.new(1).zero_().int()
-	nms.nms_cuda(keep, dets, num_out, thresh)
-	keep = keep[:num_out[0]]
-	return keep
+    # Convert dets to [x1, y1, x2, y2] format
+    boxes = dets[:, :4]
+    scores = dets[:, 4]
+
+    # Apply NMS
+    keep = ops.nms(boxes, scores, iou_threshold=thresh)
+
+    return keep

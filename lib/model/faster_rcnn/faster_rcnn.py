@@ -8,9 +8,9 @@ from torch.autograd import Variable
 import numpy as np
 from model.utils.config import cfg
 from model.rpn.rpn import _RPN
-from model.roi_pooling.modules.roi_pool import _RoIPooling
-from model.roi_crop.modules.roi_crop import _RoICrop
-from model.roi_align.modules.roi_align import RoIAlignAvg
+from model.roi_pooling.roi_pool import _RoIPooling
+from model.roi_crop.roi_crop import _RoICrop
+from model.roi_align.roi_align import RoIAlignAvg
 from model.rpn.proposal_target_layer_cascade import _ProposalTargetLayer
 import time
 import pdb

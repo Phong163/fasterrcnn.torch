@@ -9,7 +9,7 @@ class RoIAlignFunction(Function):
         self.spatial_scale = float(spatial_scale)
         self.rois = None
         self.feature_size = None
-
+    @staticmethod
     def forward(self, features, rois):
         self.rois = rois
         self.feature_size = features.size()
@@ -20,7 +20,7 @@ class RoIAlignFunction(Function):
         output = F.grid_sample(features, self._generate_grid(rois, batch_size, num_channels, data_height, data_width), align_corners=False)
 
         return output
-
+    @staticmethod
     def backward(self, grad_output):
         assert(self.feature_size is not None and grad_output.is_cuda)
 

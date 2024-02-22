@@ -1,6 +1,6 @@
 import numpy as np
 
-DTYPE = np.float
+DTYPE = float
 
 def bbox_overlaps(boxes, query_boxes):
     return bbox_overlaps_python(boxes, query_boxes)

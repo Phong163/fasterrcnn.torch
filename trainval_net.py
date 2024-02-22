@@ -43,7 +43,7 @@ def parse_args():
                       default='pascal_voc', type=str)
   parser.add_argument('--net', dest='net',
                     help='vgg16, res101',
-                    default='vgg16', type=str)
+                    default='res101', type=str)
   parser.add_argument('--start_epoch', dest='start_epoch',
                       help='starting epoch',
                       default=1, type=int)
@@ -229,7 +229,6 @@ if __name__ == '__main__':
   im_info = Variable(im_info)
   num_boxes = Variable(num_boxes)
   gt_boxes = Variable(gt_boxes)
-
   if args.cuda:
     cfg.CUDA = True
 
@@ -308,10 +307,10 @@ if __name__ == '__main__':
     data_iter = iter(dataloader)
     for step in range(iters_per_epoch):
       data = next(data_iter)
-      im_data.data.resize_(data[0].size()).copy_(data[0])
-      im_info.data.resize_(data[1].size()).copy_(data[1])
-      gt_boxes.data.resize_(data[2].size()).copy_(data[2])
-      num_boxes.data.resize_(data[3].size()).copy_(data[3])
+      im_data.resize_(data[0].size()).copy_(data[0])
+      im_info.resize_(data[1].size()).copy_(data[1])
+      gt_boxes.resize_(data[2].size()).copy_(data[2])
+      num_boxes.resize_(data[3].size()).copy_(data[3])
 
       fasterRCNN.zero_grad()
       rois, cls_prob, bbox_pred, \

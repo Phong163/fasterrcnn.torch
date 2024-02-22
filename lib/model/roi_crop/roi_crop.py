@@ -1,5 +1,5 @@
 from torch.nn.modules.module import Module
-from functions_roi_crop import RoICropFunction
+from .functions_roi_crop import RoICropFunction
 
 class _RoICrop(Module):
     def __init__(self, layout = 'BHWD'):
